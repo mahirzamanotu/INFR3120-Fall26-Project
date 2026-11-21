@@ -1,0 +1,12 @@
+# These files and folders are NOT uploaded to GitHub.
+
+# Packages. Anyone can re-download them with "npm install".
+node_modules/
+
+# Secret settings like the database password.
+.env
+
+# Extra files made by computers and editors.
+.DS_Store
+Thumbs.db
+
