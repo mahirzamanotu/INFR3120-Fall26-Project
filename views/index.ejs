@@ -1,0 +1,42 @@
+<%- include('partials/header') %>
+
+<!-- Hero section: the big banner at the top of the home page. -->
+<section class="hero">
+  <div class="container hero-inner">
+    <img class="hero-logo" src="/images/logo.svg" alt="" width="120" height="120">
+    <h1>Buy and sell with students on your campus</h1>
+    <p class="lead">
+      <%= appName %> is a simple marketplace for students. Post the textbooks, electronics and
+      dorm items you no longer need, and find what you need from people nearby.
+    </p>
+
+    <!-- The main hero button opens the form to create a new listing. -->
+    <div class="hero-actions">
+      <a href="/listings/new" class="btn btn-large">Post a Listing</a>
+      <a href="/listings" class="btn btn-large btn-outline">Browse Listings</a>
+    </div>
+  </div>
+</section>
+
+<!-- Three short points that explain how the site works. -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">How it works</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>1. Post</h3>
+        <p>Fill in a short form with the item name, price, condition and a description.</p>
+      </div>
+      <div class="card">
+        <h3>2. Browse</h3>
+        <p>Every listing shows up in one table, with the newest items at the top.</p>
+      </div>
+      <div class="card">
+        <h3>3. Connect</h3>
+        <p>Email the seller directly to ask questions and arrange a meetup on campus.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

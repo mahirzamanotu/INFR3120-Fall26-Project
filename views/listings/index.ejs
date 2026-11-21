@@ -1,0 +1,60 @@
+<%- include('../partials/header') %>
+
+<section class="section">
+  <div class="container">
+    <div class="page-head">
+      <div>
+        <h1>Listings</h1>
+        <!-- listings.length is the number of listings in the database. -->
+        <p class="muted"><%= listings.length %> item<%= listings.length === 1 ? '' : 's' %> for sale, newest first.</p>
+      </div>
+      <a href="/listings/new" class="btn">+ Post a Listing</a>
+    </div>
+
+    <!-- This message shows right after a new listing is posted. -->
+    <% if (newListingId) { %>
+      <div class="alert alert-success">Your listing was posted. It is highlighted below.</div>
+    <% } %>
+
+    <% if (listings.length === 0) { %>
+      <!-- This shows when there are no listings yet. -->
+      <div class="card empty">
+        <h2>No listings yet</h2>
+        <p class="muted">Be the first to post something for sale.</p>
+        <a href="/listings/new" class="btn">Post a Listing</a>
+      </div>
+    <% } else { %>
+      <!-- table-wrap lets the table scroll sideways on small screens. -->
+      <div class="table-wrap card">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Price</th>
+              <th>Condition</th>
+              <th>Seller</th>
+              <th>Posted</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- This loop makes one table row for each listing. -->
+            <% listings.forEach((listing) => { %>
+              <tr class="<%= String(listing._id) === newListingId ? 'row-new' : '' %>">
+                <td>
+                  <strong><%= listing.title %></strong>
+                  <div class="small muted"><%= listing.description %></div>
+                </td>
+                <td class="price"><%= formatPrice(listing.price) %></td>
+                <td><span class="badge"><%= listing.condition %></span></td>
+                <td><a href="mailto:<%= listing.sellerEmail %>"><%= listing.sellerEmail %></a></td>
+                <td class="nowrap"><%= formatDate(listing.createdAt) %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

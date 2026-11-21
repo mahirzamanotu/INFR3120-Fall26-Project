@@ -1,0 +1,74 @@
+<%- include('../partials/header') %>
+
+<section class="section">
+  <div class="container narrow">
+    <h1>Post a Listing</h1>
+    <p class="muted">All fields are required.</p>
+
+    <!-- This message only shows when the server found problems with the form. -->
+    <% if (Object.keys(errors).length > 0) { %>
+      <div class="alert alert-error">Please fix the fields marked in red.</div>
+    <% } %>
+
+    <!-- The form sends the data to POST /listings. -->
+    <!-- "values" holds what the user already typed, so nothing is lost after an error. -->
+    <form action="/listings" method="POST" class="card form">
+
+      <!-- Item name -->
+      <div class="field">
+        <label for="title">Item name</label>
+        <input type="text" id="title" name="title" required minlength="3" maxlength="80"
+               placeholder="e.g. Calculus textbook, 8th edition"
+               value="<%= values.title || '' %>" class="<%= errors.title ? 'invalid' : '' %>">
+        <% if (errors.title) { %><p class="error-text"><%= errors.title %></p><% } %>
+      </div>
+
+      <!-- Price and condition sit side by side on larger screens. -->
+      <div class="field-row">
+        <div class="field">
+          <label for="price">Price ($)</label>
+          <input type="number" id="price" name="price" required min="0" max="10000" step="0.01"
+                 placeholder="e.g. 40" value="<%= values.price || '' %>" class="<%= errors.price ? 'invalid' : '' %>">
+          <% if (errors.price) { %><p class="error-text"><%= errors.price %></p><% } %>
+        </div>
+
+        <div class="field">
+          <label for="condition">Condition</label>
+          <!-- The dropdown options come from the CONDITIONS list in models/Listing.js. -->
+          <select id="condition" name="condition" required class="<%= errors.condition ? 'invalid' : '' %>">
+            <option value="">Choose a condition</option>
+            <% conditions.forEach((c) => { %>
+              <option value="<%= c %>" <%= values.condition === c ? 'selected' : '' %>><%= c %></option>
+            <% }) %>
+          </select>
+          <% if (errors.condition) { %><p class="error-text"><%= errors.condition %></p><% } %>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="field">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="5" required minlength="10" maxlength="500"
+                  placeholder="What is it, how old is it, and where can buyers pick it up?"
+                  class="<%= errors.description ? 'invalid' : '' %>"><%= values.description || '' %></textarea>
+        <% if (errors.description) { %><p class="error-text"><%= errors.description %></p><% } %>
+      </div>
+
+      <!-- Seller email -->
+      <div class="field">
+        <label for="sellerEmail">Your email</label>
+        <input type="email" id="sellerEmail" name="sellerEmail" required maxlength="100"
+               placeholder="name@example.com"
+               value="<%= values.sellerEmail || '' %>" class="<%= errors.sellerEmail ? 'invalid' : '' %>">
+        <% if (errors.sellerEmail) { %><p class="error-text"><%= errors.sellerEmail %></p><% } %>
+      </div>
+
+      <div class="form-actions">
+        <a href="/listings" class="btn btn-outline">Cancel</a>
+        <button type="submit" class="btn">Post Listing</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

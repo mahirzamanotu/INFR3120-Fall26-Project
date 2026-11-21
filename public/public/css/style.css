@@ -1,0 +1,256 @@
+/* =========================================================
+   CampusMarket styles
+   The colours are stored as variables at the top.
+   Changing a variable changes that colour everywhere.
+   ========================================================= */
+
+:root {
+  --indigo: #4f46e5;
+  --indigo-dark: #4338ca;
+  --indigo-light: #eef2ff;
+  --amber: #f59e0b;
+  --navy: #1e1b4b;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --bg: #f9fafb;
+  --white: #ffffff;
+  --red: #dc2626;
+  --green-bg: #ecfdf5;
+  --green-text: #065f46;
+}
+
+/* box-sizing makes padding count inside an element's width. */
+* { box-sizing: border-box; }
+
+/* The body is a column so the footer always sits at the bottom. */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main { flex: 1; }
+h1, h2, h3 { color: var(--navy); line-height: 1.25; margin: 0 0 .5rem; }
+a { color: var(--indigo); }
+
+/* ---------- Layout helpers ---------- */
+.container { width: min(1100px, 100% - 2rem); margin: 0 auto; }
+.narrow { width: min(720px, 100% - 2rem); }
+.section { padding: 3rem 0; }
+.section-title { text-align: center; margin-bottom: 1.5rem; }
+.center { text-align: center; }
+.muted { color: var(--muted); }
+.small { font-size: .875rem; }
+.nowrap { white-space: nowrap; }
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+}
+
+/* ---------- Header and navigation ---------- */
+.site-header { background: var(--navy); }
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 70px;
+  position: relative;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  color: var(--white);
+  font-size: 1.35rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a:not(.btn) { color: #c7d2fe; text-decoration: none; font-weight: 500; }
+.nav-links a:not(.btn):hover,
+.nav-links a.active { color: var(--white); text-decoration: underline; text-underline-offset: 6px; }
+
+/* The menu button is hidden on large screens. */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  color: var(--white);
+  font-size: 1.75rem;
+  cursor: pointer;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  background: var(--indigo);
+  color: var(--white);
+  border: 2px solid var(--indigo);
+  border-radius: 8px;
+  padding: .6rem 1.2rem;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover { background: var(--indigo-dark); border-color: var(--indigo-dark); }
+.btn-outline { background: transparent; color: var(--indigo); }
+.btn-outline:hover { background: var(--indigo-light); color: var(--indigo-dark); }
+.btn-small { padding: .35rem .85rem; font-size: .9rem; }
+.btn-large { padding: .85rem 1.6rem; font-size: 1.05rem; }
+
+/* ---------- Home page hero ---------- */
+.hero {
+  background: linear-gradient(135deg, var(--navy), var(--indigo));
+  color: #e0e7ff;
+  padding: 4rem 0;
+  text-align: center;
+}
+.hero-inner { max-width: 760px; }
+.hero h1 { color: var(--white); font-size: clamp(2rem, 5vw, 3rem); }
+.hero .lead { font-size: 1.15rem; }
+.hero-logo { background: var(--white); border-radius: 24px; padding: 10px; }
+.hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-top: 1.75rem; }
+.hero .btn { background: var(--amber); border-color: var(--amber); color: var(--navy); }
+.hero .btn:hover { background: #fbbf24; border-color: #fbbf24; }
+.hero .btn-outline { background: transparent; border-color: var(--white); color: var(--white); }
+.hero .btn-outline:hover { background: rgba(255, 255, 255, .12); }
+
+.card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.card-grid p { margin: 0; color: var(--muted); }
+
+/* ---------- Form ---------- */
+.form { margin-top: 1rem; }
+.field { margin-bottom: 1.1rem; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+label { display: block; font-weight: 600; margin-bottom: .3rem; color: var(--navy); }
+
+input, select, textarea {
+  width: 100%;
+  padding: .6rem .75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font: inherit;
+  background: var(--white);
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--indigo);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, .2);
+}
+
+/* Fields with a problem get a red border. */
+.invalid { border-color: var(--red); }
+.error-text { color: var(--red); font-size: .875rem; margin: .25rem 0 0; }
+.form-actions { display: flex; justify-content: flex-end; gap: .75rem; }
+
+/* ---------- Messages ---------- */
+.alert { padding: .85rem 1rem; border-radius: 8px; margin: 1rem 0; font-weight: 600; }
+.alert-error { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+.alert-success { background: var(--green-bg); color: var(--green-text); border: 1px solid #a7f3d0; }
+
+/* ---------- Listings table ---------- */
+.page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* The table scrolls sideways if the screen is too narrow. */
+.table-wrap { padding: 0; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 700px; }
+th {
+  text-align: left;
+  background: var(--indigo-light);
+  color: var(--navy);
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  padding: .75rem 1rem;
+}
+td { padding: .85rem 1rem; border-top: 1px solid var(--border); vertical-align: top; }
+
+/* Long descriptions are cut off after two lines. */
+td .small {
+  max-width: 380px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.price { font-weight: 700; color: var(--indigo-dark); white-space: nowrap; }
+.badge {
+  display: inline-block;
+  background: #fef3c7;
+  color: #92400e;
+  border-radius: 999px;
+  padding: .1rem .6rem;
+  font-size: .8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* The listing that was just posted gets a green background. */
+.row-new { background: var(--green-bg); }
+
+.empty { text-align: center; padding: 3rem 1rem; }
+
+/* ---------- Footer ---------- */
+.site-footer { background: var(--navy); color: #a5b4fc; padding: 1.5rem 0; font-size: .9rem; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-inner p { margin: 0; }
+.footer-inner nav { display: flex; gap: 1rem; }
+.footer-inner a { color: #c7d2fe; text-decoration: none; }
+
+/* ---------- Small screens (phones) ---------- */
+@media (max-width: 700px) {
+  /* The menu button appears and the links become a dropdown. */
+  .nav-toggle { display: block; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--navy);
+    padding: .5rem 0 1rem;
+    z-index: 10;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li a:not(.btn) { display: block; padding: .6rem 0; }
+  .nav-links .btn { display: block; text-align: center; margin-top: .5rem; }
+
+  /* Cards and form fields stack in one column. */
+  .card-grid { grid-template-columns: 1fr; }
+  .field-row { grid-template-columns: 1fr; gap: 0; }
+  .hero-actions .btn { width: 100%; }
+  .footer-inner { flex-direction: column; text-align: center; }
+}
